@@ -1,18 +1,25 @@
 import logo from "@/assets/logo.svg";
 import type { User } from "@/lib/auth";
+import type { Application } from "@/lib/applications";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
+import { NewApplicationDialog } from "@/components/dashboard/new-application-dialog";
 
 type SidebarProps = {
     user: User;
     onLogout: () => void;
+    onApplicationCreated: (application: Application) => void;
 };
 
-const Sidebar = ({ user, onLogout }: SidebarProps) => {
+const Sidebar = ({ user, onLogout, onApplicationCreated }: SidebarProps) => {
     return (
         <aside className="flex h-screen w-61 shrink-0 flex-col border-r border-neutral-200 bg-white">
             <div className="flex items-center gap-2 px-5 py-5">
                 <img src={logo} alt="" width={28} height={28} />
                 <span className="text-lg font-bold text-text-100">Job Tracker</span>
+            </div>
+
+            <div className="px-3 pb-2">
+                <NewApplicationDialog userId={user.id} onCreated={onApplicationCreated} triggerClassName="w-full" />
             </div>
 
             <SidebarNav />
