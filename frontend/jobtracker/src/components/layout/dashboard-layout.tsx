@@ -34,7 +34,12 @@ const DashboardLayout = () => {
 
     return (
         <div className="flex min-h-screen bg-background-default">
-            <Sidebar user={user} onLogout={handleLogout} onApplicationCreated={addApplication} />
+            <Sidebar
+                user={user}
+                applications={applications}
+                onLogout={handleLogout}
+                onApplicationCreated={addApplication}
+            />
             <main className="min-w-0 flex-1 px-10 py-5">
                 <Outlet context={{ user, applications, addApplication, moveApplication } satisfies DashboardContext} />
             </main>

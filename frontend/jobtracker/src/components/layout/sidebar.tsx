@@ -2,15 +2,17 @@ import logo from "@/assets/logo.svg";
 import type { User } from "@/lib/auth";
 import type { Application } from "@/lib/applications";
 import { SidebarNav } from "@/components/layout/sidebar-nav";
+import { SidebarSummary } from "@/components/layout/sidebar-summary";
 import { NewApplicationDialog } from "@/components/dashboard/new-application-dialog";
 
 type SidebarProps = {
     user: User;
+    applications: Application[];
     onLogout: () => void;
     onApplicationCreated: (application: Application) => void;
 };
 
-const Sidebar = ({ user, onLogout, onApplicationCreated }: SidebarProps) => {
+const Sidebar = ({ user, applications, onLogout, onApplicationCreated }: SidebarProps) => {
     return (
         <aside className="flex h-screen w-61 shrink-0 flex-col border-r border-neutral-200 bg-white">
             <div className="flex items-center gap-2 px-5 py-5">
@@ -23,6 +25,8 @@ const Sidebar = ({ user, onLogout, onApplicationCreated }: SidebarProps) => {
             </div>
 
             <SidebarNav />
+
+            <SidebarSummary applications={applications} />
 
             <div className="mt-auto flex items-center gap-2 border-t border-neutral-200 px-5 py-4">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary-100 text-xs font-semibold text-white">
