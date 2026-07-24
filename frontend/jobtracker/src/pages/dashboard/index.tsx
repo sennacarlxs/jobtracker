@@ -1,11 +1,27 @@
+import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
 import type { DashboardContext } from "@/components/layout/dashboard-layout";
-import { ApplicationCard } from "@/components/dashboard/application-card";
+import { PipelineBoard } from "@/components/dashboard/pipeline-board";
 import { PipelineEmptyState } from "@/components/dashboard/pipeline-empty-state";
+import { PipelineToolbar, type StageFilter } from "@/components/dashboard/pipeline-toolbar";
 
 const Dashboard = () => {
-    const { user, applications, addApplication } = useOutletContext<DashboardContext>();
+    const { user, applications, addApplication, moveApplication } = useOutletContext<DashboardContext>();
+    const [search, setSearch] = useState("");
+    const [activeStage, setActiveStage] = useState<StageFilter>("all");
+
+    const searchTerm = search.trim().toLowerCase();
+    const searchFiltered = applications.filter(
+        (application) =>
+            !searchTerm ||
+            application.companyName.toLowerCase().includes(searchTerm) ||
+            application.role.toLowerCase().includes(searchTerm)
+    );
+    const visibleApplications =
+        activeStage === "all"
+            ? searchFiltered
+            : searchFiltered.filter((application) => application.currentStage === activeStage);
 
     return (
         <div className="flex flex-col gap-6">
@@ -21,11 +37,29 @@ const Dashboard = () => {
             {applications.length === 0 ? (
                 <PipelineEmptyState userId={user.id} onCreated={addApplication} />
             ) : (
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    {applications.map((application) => (
-                        <ApplicationCard key={application.id} application={application} />
-                    ))}
-                </div>
+                <>
+                    <PipelineToolbar
+                        applications={searchFiltered}
+                        search={search}
+                        onSearchChange={setSearch}
+                        activeStage={activeStage}
+                        onActiveStageChange={setActiveStage}
+                    />
+
+                    {searchTerm && visibleApplications.length === 0 && (
+                        <p className="text-center text-xs text-text-300">
+                            Nenhuma candidatura encontrada para "{search.trim()}".
+                        </p>
+                    )}
+
+                    <PipelineBoard
+                        applications={visibleApplications}
+                        userId={user.id}
+                        activeStage={activeStage}
+                        onApplicationCreated={addApplication}
+                        onApplicationMoved={moveApplication}
+                    />
+                </>
             )}
         </div>
     );

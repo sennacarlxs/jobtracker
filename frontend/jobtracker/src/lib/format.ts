@@ -1,3 +1,11 @@
+import type { ApplicationStage } from "@/lib/applications";
+
+function getStageDotColor(stage: ApplicationStage): string {
+    if (stage === "Oferta") return "bg-success";
+    if (stage === "Recusado") return "bg-error";
+    return "bg-primary-100";
+}
+
 function getInitials(name: string): string {
     return name
         .trim()
@@ -29,4 +37,4 @@ function getAvatarColor(seed: string): string {
     return AVATAR_COLORS[Math.abs(hash) % AVATAR_COLORS.length];
 }
 
-export { getInitials, formatRelativeDate, getAvatarColor };
+export { getInitials, formatRelativeDate, getAvatarColor, getStageDotColor };

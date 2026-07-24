@@ -1,14 +1,33 @@
+import type { DragEvent } from "react";
+
 import type { Application } from "@/lib/applications";
 import { getInitials, formatRelativeDate, getAvatarColor } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
 type ApplicationCardProps = {
     application: Application;
+    isDragging?: boolean;
+    onDragStart?: (id: string) => void;
+    onDragEnd?: () => void;
 };
 
-const ApplicationCard = ({ application }: ApplicationCardProps) => {
+const ApplicationCard = ({ application, isDragging, onDragStart, onDragEnd }: ApplicationCardProps) => {
+    const handleDragStart = (e: DragEvent<HTMLDivElement>) => {
+        e.dataTransfer.setData("text/plain", application.id);
+        e.dataTransfer.effectAllowed = "move";
+        onDragStart?.(application.id);
+    };
+
     return (
-        <div className="flex flex-col gap-3 rounded-[14px] border border-neutral-200 bg-white p-4">
+        <div
+            draggable
+            onDragStart={handleDragStart}
+            onDragEnd={onDragEnd}
+            className={cn(
+                "flex cursor-grab flex-col gap-3 rounded-[14px] border border-neutral-200 bg-white p-4 transition-shadow hover:border-text-300/30 hover:shadow-sm active:cursor-grabbing",
+                isDragging && "opacity-40"
+            )}
+        >
             <div className="flex items-start gap-3">
                 <div
                     className={cn(

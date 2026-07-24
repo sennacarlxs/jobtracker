@@ -70,5 +70,16 @@ function createApplication(userId: string, input: CreateApplicationInput): Appli
     return application;
 }
 
-export { STAGES, listApplications, createApplication };
+function updateApplicationStage(id: string, currentStage: ApplicationStage): Application | null {
+    const applications = getAll();
+    const index = applications.findIndex((application) => application.id === id);
+    if (index === -1) return null;
+
+    const updated: Application = { ...applications[index], currentStage, updatedAt: new Date().toISOString() };
+    applications[index] = updated;
+    saveAll(applications);
+    return updated;
+}
+
+export { STAGES, listApplications, createApplication, updateApplicationStage };
 export type { Application, ApplicationStage, CreateApplicationInput };

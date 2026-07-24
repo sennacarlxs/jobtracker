@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 
 import {
     Dialog,
@@ -20,13 +20,15 @@ import { cn } from "@/lib/utils";
 type NewApplicationDialogProps = {
     userId: string;
     onCreated: (application: Application) => void;
-    triggerLabel?: string;
+    defaultStage?: ApplicationStage;
+    triggerLabel?: ReactNode;
     triggerClassName?: string;
 };
 
 const NewApplicationDialog = ({
     userId,
     onCreated,
+    defaultStage = "Aplicado",
     triggerLabel = "+ Nova candidatura",
     triggerClassName,
 }: NewApplicationDialogProps) => {
@@ -91,7 +93,7 @@ const NewApplicationDialog = ({
                     <div className="grid grid-cols-2 gap-3">
                         <div className="flex flex-col gap-1.5">
                             <label className="text-xs font-medium text-text-100">Status inicial</label>
-                            <Select name="currentStage" defaultValue="Aplicado">
+                            <Select name="currentStage" defaultValue={defaultStage}>
                                 <SelectTrigger className="w-full text-xs">
                                     <SelectValue />
                                 </SelectTrigger>
