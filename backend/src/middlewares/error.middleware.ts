@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
-import { AppError } from '../utils/app-error';
+import { AppError } from '../core/utils/app-error';
 
 // Middleware de erro do Express SEMPRE tem 4 parâmetros — é assim que
 // o framework reconhece que essa função trata erros, não uma rota normal.

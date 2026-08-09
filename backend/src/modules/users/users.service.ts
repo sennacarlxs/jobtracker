@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import { usersRepository } from './users.repository';
-import { AppError } from '../../utils/app-error';
+import { AppError } from '../../core/utils/app-error';
 import { UpdateProfileInput } from './users.validators';
 
 interface UserRecord {
