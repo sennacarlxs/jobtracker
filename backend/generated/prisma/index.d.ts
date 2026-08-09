@@ -1210,6 +1210,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     profilePictureUrl: string | null
+    refreshTokenHash: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1220,6 +1221,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     profilePictureUrl: string | null
+    refreshTokenHash: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1230,6 +1232,7 @@ export namespace Prisma {
     email: number
     password: number
     profilePictureUrl: number
+    refreshTokenHash: number
     _all: number
   }
 
@@ -1242,6 +1245,7 @@ export namespace Prisma {
     email?: true
     password?: true
     profilePictureUrl?: true
+    refreshTokenHash?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1252,6 +1256,7 @@ export namespace Prisma {
     email?: true
     password?: true
     profilePictureUrl?: true
+    refreshTokenHash?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1262,6 +1267,7 @@ export namespace Prisma {
     email?: true
     password?: true
     profilePictureUrl?: true
+    refreshTokenHash?: true
     _all?: true
   }
 
@@ -1345,6 +1351,7 @@ export namespace Prisma {
     email: string
     password: string
     profilePictureUrl: string | null
+    refreshTokenHash: string | null
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1372,6 +1379,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     profilePictureUrl?: boolean
+    refreshTokenHash?: boolean
     applications?: boolean | User$applicationsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -1384,6 +1392,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     profilePictureUrl?: boolean
+    refreshTokenHash?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1394,6 +1403,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     profilePictureUrl?: boolean
+    refreshTokenHash?: boolean
   }
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1415,6 +1425,7 @@ export namespace Prisma {
       email: string
       password: string
       profilePictureUrl: string | null
+      refreshTokenHash: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1816,6 +1827,7 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly profilePictureUrl: FieldRef<"User", 'String'>
+    readonly refreshTokenHash: FieldRef<"User", 'String'>
   }
     
 
@@ -5184,7 +5196,8 @@ export namespace Prisma {
     name: 'name',
     email: 'email',
     password: 'password',
-    profilePictureUrl: 'profilePictureUrl'
+    profilePictureUrl: 'profilePictureUrl',
+    refreshTokenHash: 'refreshTokenHash'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -5346,6 +5359,7 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     profilePictureUrl?: StringNullableFilter<"User"> | string | null
+    refreshTokenHash?: StringNullableFilter<"User"> | string | null
     applications?: ApplicationListRelationFilter
   }
 
@@ -5357,6 +5371,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     profilePictureUrl?: SortOrderInput | SortOrder
+    refreshTokenHash?: SortOrderInput | SortOrder
     applications?: ApplicationOrderByRelationAggregateInput
   }
 
@@ -5371,6 +5386,7 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     profilePictureUrl?: StringNullableFilter<"User"> | string | null
+    refreshTokenHash?: StringNullableFilter<"User"> | string | null
     applications?: ApplicationListRelationFilter
   }, "id" | "email">
 
@@ -5382,6 +5398,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     profilePictureUrl?: SortOrderInput | SortOrder
+    refreshTokenHash?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -5398,6 +5415,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     profilePictureUrl?: StringNullableWithAggregatesFilter<"User"> | string | null
+    refreshTokenHash?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type ApplicationWhereInput = {
@@ -5631,6 +5649,7 @@ export namespace Prisma {
     email: string
     password: string
     profilePictureUrl?: string | null
+    refreshTokenHash?: string | null
     applications?: ApplicationCreateNestedManyWithoutUserInput
   }
 
@@ -5642,6 +5661,7 @@ export namespace Prisma {
     email: string
     password: string
     profilePictureUrl?: string | null
+    refreshTokenHash?: string | null
     applications?: ApplicationUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -5653,6 +5673,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profilePictureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshTokenHash?: NullableStringFieldUpdateOperationsInput | string | null
     applications?: ApplicationUpdateManyWithoutUserNestedInput
   }
 
@@ -5664,6 +5685,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profilePictureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshTokenHash?: NullableStringFieldUpdateOperationsInput | string | null
     applications?: ApplicationUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -5675,6 +5697,7 @@ export namespace Prisma {
     email: string
     password: string
     profilePictureUrl?: string | null
+    refreshTokenHash?: string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -5685,6 +5708,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profilePictureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshTokenHash?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -5695,6 +5719,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profilePictureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshTokenHash?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ApplicationCreateInput = {
@@ -6004,6 +6029,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     profilePictureUrl?: SortOrder
+    refreshTokenHash?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -6014,6 +6040,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     profilePictureUrl?: SortOrder
+    refreshTokenHash?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -6024,6 +6051,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     profilePictureUrl?: SortOrder
+    refreshTokenHash?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -6799,6 +6827,7 @@ export namespace Prisma {
     email: string
     password: string
     profilePictureUrl?: string | null
+    refreshTokenHash?: string | null
   }
 
   export type UserUncheckedCreateWithoutApplicationsInput = {
@@ -6809,6 +6838,7 @@ export namespace Prisma {
     email: string
     password: string
     profilePictureUrl?: string | null
+    refreshTokenHash?: string | null
   }
 
   export type UserCreateOrConnectWithoutApplicationsInput = {
@@ -6887,6 +6917,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profilePictureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshTokenHash?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateWithoutApplicationsInput = {
@@ -6897,6 +6928,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profilePictureUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    refreshTokenHash?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ContactUpsertWithWhereUniqueWithoutApplicationInput = {
