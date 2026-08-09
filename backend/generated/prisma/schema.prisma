@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String   @id @default(uuid())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt()
+  name              String
+  email             String   @unique
+  password          String
+  profilePictureUrl String?
+
+  applications Application[]
+}
+
+model Application {
+  id              String     @id @default(uuid())
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt()
+  companyName     String
+  role            String
+  jobUrl          String?
+  estimatedSalary Int?
+  tags            String[]
+  currentStage    StageEnum
+  nextStage       StageEnum?
+  nextStageDate   DateTime?
+  notes           String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  contacts             Contact[]
+  applicationHistories ApplicationHistory[]
+}
+
+model Contact {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt()
+  contactName String
+  email       String?
+  phoneNumber String?
+
+  applicationId String
+  application   Application @relation(fields: [applicationId], references: [id])
+}
+
+model ApplicationHistory {
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  startDate DateTime
+  stage     StageEnum @default(APPLIED)
+
+  applicationId String
+  application   Application @relation(fields: [applicationId], references: [id])
+}
+
+enum StageEnum {
+  APPLIED
+  SCREENING
+  TECHNICAL_INTERVIEW
+  FINAL_INTERVIEW
+  OFFER
+  REJECTED
+}
