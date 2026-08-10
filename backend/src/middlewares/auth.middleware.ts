@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { verifyAccessToken } from '../utils/jwt';
+import { verifyAccessToken } from '../core/utils/jwt';
 
 // Estende o tipo Request do Express pra poder guardar o userId
 // depois de validar o token, e outros controllers usarem req.userId.
