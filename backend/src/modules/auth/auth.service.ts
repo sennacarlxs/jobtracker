@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import { authRepository } from './auth.repository';
-import { signAccessToken, signRefreshToken, verifyRefreshToken } from '../../utils/jwt';
-import { AppError } from '../../utils/app-error';
+import { signAccessToken, signRefreshToken, verifyRefreshToken } from '../../core/utils/jwt';
+import { AppError } from '../../core/utils/app-error';
 import { RegisterInput, LoginInput, RefreshInput, LogoutInput } from './auth.validators';
 
 interface UserRecord {
@@ -97,5 +97,11 @@ export const authService = {
     }
 
     await authRepository.updateRefreshTokenHash(payload.userId, null);
+  },
+
+  isUserAuthenticated(userId: string) {
+    if (!userId) throw new AppError('UNAUTHORIZED', 'Não autenticado.', 401);
+
+    return true;
   },
 };
